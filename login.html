@@ -56,12 +56,17 @@
             const passwordInput = document.getElementById('password').value;
             const errorMsg = document.getElementById('error');
 
-            // CHANGE PASSWORD HERE
-            const correctPassword = "shonkuweb@gmail.com";
+            // User credentials map
+            const users = {
+                "shonkuweb@gmail.com": 10000,
+                "imsoumyojit@gmail.com": 20000
+            };
 
-            if (passwordInput === correctPassword) {
+            if (users.hasOwnProperty(passwordInput)) {
                 // Set a flag in session storage to indicate the user is logged in
                 sessionStorage.setItem('isLoggedIn', 'true');
+                // Store the specific amount for this user
+                sessionStorage.setItem('paymentAmount', users[passwordInput]);
                 window.location.href = 'index.html';
             } else {
                 errorMsg.style.display = 'block';

@@ -18,10 +18,22 @@
 
             <div class="qr-container">
                 <!-- Dynamic QR Code for UPI Payment -->
-                <!-- UPI URL: upi://pay?pa=6295175749-1@okbizaxis&pn=ShonkuWeb&am=1&cu=INR -->
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi%3A%2F%2Fpay%3Fpa%3D6295175749-1%40okbizaxis%26pn%3DShonkuWeb%26am%3D1%26cu%3DINR"
-                    alt="Payment QR Code" class="qr-code">
+                <img id="payment-qr" src="" alt="Payment QR Code" class="qr-code">
             </div>
+
+            <script>
+                // Get amount from session storage, default to 1 if not found (fallback)
+                const amount = sessionStorage.getItem('paymentAmount') || '1';
+
+                // Construct UPI URL
+                const upiUrl = `upi://pay?pa=6295175749-1@okbizaxis&pn=ShonkuWeb&am=${amount}&cu=INR`;
+
+                // Generate QR Code URL
+                const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
+
+                // Set image source
+                document.getElementById('payment-qr').src = qrUrl;
+            </script>
 
             <p style="margin-bottom: 30px; color: var(--text-muted);">After payment, please upload the screenshot.</p>
 
