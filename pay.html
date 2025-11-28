@@ -16,8 +16,10 @@
             <p class="subtitle">Please scan the QR code below to complete your payment.</p>
 
             <div class="qr-container">
-                <!-- User provided QR Code (Cropped) -->
-                <img src="payment-qr-cropped.png" alt="Payment QR Code" class="qr-code">
+                <!-- Dynamic QR Code for UPI Payment -->
+                <!-- UPI URL: upi://pay?pa=6295175749-1@okbizaxis&pn=ShonkuWeb&am=10000&cu=INR -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi%3A%2F%2Fpay%3Fpa%3D6295175749-1%40okbizaxis%26pn%3DShonkuWeb%26am%3D10000%26cu%3DINR"
+                    alt="Payment QR Code" class="qr-code">
             </div>
 
             <p style="margin-bottom: 30px; color: var(--text-muted);">After payment, please upload the screenshot.</p>
