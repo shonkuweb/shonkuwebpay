@@ -1,37 +1,282 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SHONKUWEBPAY</title>
-    <style>
-      html, body { height: 100%; margin: 0; }
-      body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-        background: #ffffff;
-      }
-      .wrap { text-align: center; padding: 24px; }
-      h1 {
-        font-size: 40px;
-        font-weight: 800;
-        margin: 0 0 8px;
-        letter-spacing: 0.2px;
-      }
-      p {
-        margin: 0;
-        font-size: 18px;
-        color: #6b7280;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <h1>Welcome to ShonkuWebPay</h1>
-      <p>Under Development</p>
-    </div>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SHONKUWEBPAY</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Business Onboarding</h1>
+      <p>Let's get your business online. Please fill in the details below.</p>
+    </header>
+
+    <form id="onboardingForm">
+      <!-- 1. Business Basics -->
+      <section class="form-section">
+        <div class="section-title">
+          <span class="section-number">1</span>
+          Business Basics
+        </div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="businessName">Business Name</label>
+            <input type="text" id="businessName" name="businessName" placeholder="e.g. Shonku's Gadgets" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Contact Email</label>
+            <input type="email" id="email" name="email" placeholder="email@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Contact Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+          </div>
+          <div class="form-group full">
+            <label for="address">Business Address</label>
+            <textarea id="address" name="address" placeholder="Full business address..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label for="aboutBusiness">About the Business (Short Description)</label>
+            <textarea id="aboutBusiness" name="aboutBusiness" placeholder="We sell premium gadgets..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label>Do you have GST?</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="gst" value="yes"> Yes
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="gst" value="no" checked> No
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Branding -->
+      <section class="form-section">
+        <div class="section-title">
+          <span class="section-number">2</span>
+          Branding
+        </div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Logo</label>
+            <div class="file-upload">
+              <input type="file" id="logo" name="logo" accept="image/*">
+              <p>Click to upload or drag and drop</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="brandColors">Brand Colors (if any)</label>
+            <input type="text" id="brandColors" name="brandColors" placeholder="e.g. Blue and Gold, or #0000FF">
+          </div>
+          <div class="form-group full">
+            <label for="exampleWebsites">Example Websites You Like</label>
+            <textarea id="exampleWebsites" name="exampleWebsites"
+              placeholder="https://example.com, https://another.com"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Domain & Hosting -->
+      <section class="form-section">
+        <div class="section-title">
+          <span class="section-number">3</span>
+          Domain & Hosting
+        </div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Do you already have a domain?</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="hasDomain" value="yes"> Yes
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="hasDomain" value="no" checked> No
+              </label>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label for="domainLogin">Domain Login (if we need to connect DNS)</label>
+            <textarea id="domainLogin" name="domainLogin"
+              placeholder="Provider, Username, Password (optional)"></textarea>
+          </div>
+          <div class="form-group full">
+            <label for="hosting">Hosting Preference</label>
+            <select id="hosting" name="hosting">
+              <option value="vercel">Vercel (Recommended for Speed)</option>
+              <option value="hostinger">Hostinger</option>
+              <option value="aws">AWS</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Payment Setup -->
+      <section class="form-section">
+        <div class="section-title">
+          <span class="section-number">4</span>
+          Payment Setup
+        </div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="paymentMethod">Preferred Payment Method</label>
+            <select id="paymentMethod" name="paymentMethod">
+              <option value="razorpay">Razorpay</option>
+              <option value="stripe">Stripe</option>
+              <option value="upi">UPI Only</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="paymentDetails">Razorpay Account Access / Business Details</label>
+            <textarea id="paymentDetails" name="paymentDetails"
+              placeholder="API Keys or Login credentials..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label for="bankDetails">Bank Details for Payouts</label>
+            <textarea id="bankDetails" name="bankDetails" placeholder="Account Number, IFSC, Holder Name..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Shipping & Delivery -->
+      <section class="form-section">
+        <div class="section-title">
+          <span class="section-number">5</span>
+          Shipping & Delivery
+        </div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Delivery Areas</label>
+            <div class="checkbox-group">
+              <label class="checkbox-option"><input type="checkbox" name="deliveryArea" value="local"> Local</label>
+              <label class="checkbox-option"><input type="checkbox" name="deliveryArea" value="state"> State</label>
+              <label class="checkbox-option"><input type="checkbox" name="deliveryArea" value="pan_india"> PAN
+                India</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="shippingCharges">Shipping Charges</label>
+            <select id="shippingCharges" name="shippingCharges">
+              <option value="free">Free Shipping</option>
+              <option value="flat">Flat Rate</option>
+              <option value="weight">Weight-based</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="deliveryDays">Estimated Delivery Days</label>
+            <input type="text" id="deliveryDays" name="deliveryDays" placeholder="e.g. 3-5 days">
+          </div>
+          <div class="form-group full">
+            <label>Return Eligibility</label>
+            <div class="radio-group">
+              <label class="radio-option"><input type="radio" name="returns" value="yes" checked> Yes</label>
+              <label class="radio-option"><input type="radio" name="returns" value="no"> No</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Required Pages -->
+      <section class="form-section">
+        <div class="section-title">
+          <span class="section-number">6</span>
+          Required Pages
+        </div>
+        <div class="form-grid full-width">
+          <div class="checkbox-group">
+            <label class="checkbox-option"><input type="checkbox" name="pages" value="home" checked disabled>
+              Home</label>
+            <label class="checkbox-option"><input type="checkbox" name="pages" value="products" checked>
+              Products</label>
+            <label class="checkbox-option"><input type="checkbox" name="pages" value="about" checked> About</label>
+            <label class="checkbox-option"><input type="checkbox" name="pages" value="contact" checked> Contact</label>
+            <label class="checkbox-option"><input type="checkbox" name="pages" value="cart" checked> Cart</label>
+            <label class="checkbox-option"><input type="checkbox" name="pages" value="checkout" checked>
+              Checkout</label>
+            <label class="checkbox-option"><input type="checkbox" name="pages" value="policies" checked> Policies
+              (Return, Privacy, etc.)</label>
+            <label class="checkbox-option"><input type="checkbox" name="pages" value="blog"> Blog</label>
+            <label class="checkbox-option"><input type="checkbox" name="pages" value="testimonials">
+              Testimonials</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Admin Panel Requirements -->
+      <section class="form-section">
+        <div class="section-title">
+          <span class="section-number">7</span>
+          Admin Panel Requirements
+        </div>
+        <div class="form-grid full-width">
+          <div class="checkbox-group">
+            <label class="checkbox-option"><input type="checkbox" name="admin" value="manage_products" checked> Manage
+              Products</label>
+            <label class="checkbox-option"><input type="checkbox" name="admin" value="manage_orders" checked> Manage
+              Orders</label>
+            <label class="checkbox-option"><input type="checkbox" name="admin" value="inventory" checked> Inventory
+              Updates</label>
+            <label class="checkbox-option"><input type="checkbox" name="admin" value="coupons">
+              Coupons/Discounts</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. Integrations -->
+      <section class="form-section">
+        <div class="section-title">
+          <span class="section-number">8</span>
+          Integrations
+        </div>
+        <div class="form-grid full-width">
+          <div class="checkbox-group">
+            <label class="checkbox-option"><input type="checkbox" name="integrations" value="whatsapp" checked> WhatsApp
+              Button</label>
+            <label class="checkbox-option"><input type="checkbox" name="integrations" value="email_notif" checked> Email
+              Notifications</label>
+            <label class="checkbox-option"><input type="checkbox" name="integrations" value="analytics"> Google
+              Analytics</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. Content Needed -->
+      <section class="form-section">
+        <div class="section-title">
+          <span class="section-number">9</span>
+          Content Needed
+        </div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="aboutText">About Us Text</label>
+            <textarea id="aboutText" name="aboutText" placeholder="Detailed story about your brand..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label>Banner Images</label>
+            <div class="file-upload">
+              <input type="file" id="banners" name="banners" multiple accept="image/*">
+              <p>Upload one or more banner images</p>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label for="socialLinks">Social Media Links</label>
+            <textarea id="socialLinks" name="socialLinks"
+              placeholder="Facebook, Instagram, Twitter links..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <button type="submit">Submit Information</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>
