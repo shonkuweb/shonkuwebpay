@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ShonkuWeb Pay</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--background);
+        }
+
+        .login-card {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-card h1 {
+            margin-bottom: 24px;
+            color: var(--text-main);
+        }
+
+        .error-msg {
+            color: #ef4444;
+            margin-top: 10px;
+            display: none;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-card">
+        <h1>Login</h1>
+        <div class="form-group">
+            <label for="password" style="text-align: left;">Password</label>
+            <input type="password" id="password" placeholder="Enter password">
+        </div>
+        <button onclick="checkPassword()" class="submit-btn" style="margin-top: 20px;">Enter</button>
+        <p id="error" class="error-msg">Incorrect password</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const passwordInput = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error');
+
+            // CHANGE PASSWORD HERE
+            const correctPassword = "shonkuweb@gmail.com";
+
+            if (passwordInput === correctPassword) {
+                // Set a flag in session storage to indicate the user is logged in
+                sessionStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'index.html';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        // Allow pressing Enter to submit
+        document.getElementById('password').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+
+</html>
