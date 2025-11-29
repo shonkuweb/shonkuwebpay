@@ -4,9 +4,12 @@
 
 const CONFIG = {
     users: {
-        "0000": 20000,
-        "imsoumyojit@gmail.com": 10,
-        "demo@example.com": 1 // Example user
+        "ssss": { amount: 20000, code: "2222" },
+        "imsoumyojit@gmail.com": { amount: 10, code: "1234" },
+        "demo@example.com": { amount: 1, code: "1234" },
+        "shibam@shibam.com": { amount: 1, code: "2320" },
+        "jit": { amount: 1, code: "2320" },
+        "b": { amount: 1, code: "2320" }
     },
 
     // You can add other global settings here in the future

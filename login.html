@@ -108,7 +108,7 @@
                 // Store the current user identifier
                 sessionStorage.setItem('currentUser', passwordInput);
                 // Store the specific amount for this user (fallback)
-                sessionStorage.setItem('paymentAmount', users[passwordInput]);
+                sessionStorage.setItem('paymentAmount', users[passwordInput].amount);
                 window.location.href = 'index.html';
             } else {
                 errorMsg.style.display = 'block';
