@@ -1,20 +1,66 @@
-/* Login Page Enhancements */
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --secondary: #f97316;
+    --secondary-hover: #ea580c;
+    --text-main: #111827;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --background: #f9fafb;
+    --surface: #ffffff;
+    --radius: 12px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
 
 body {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     min-height: 100vh;
+    color: var(--text-main);
+    line-height: 1.5;
 }
 
+/* Container & Card Defaults */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card {
+    background: var(--surface);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+/* Login Page Styles */
 .login-card {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     padding: 48px;
     border-radius: 24px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-lg);
     width: 100%;
     max-width: 420px;
     text-align: center;
     animation: fadeInUp 0.5s ease-out forwards;
+    margin: 0 auto;
 }
 
 .login-header {
@@ -61,6 +107,37 @@ body {
     color: var(--text-main);
 }
 
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.password-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+}
+
 .forgot-password {
     display: block;
     text-align: right;
@@ -78,10 +155,20 @@ body {
 }
 
 .submit-btn {
-    margin-top: 8px;
+    width: 100%;
+    padding: 14px;
     background: linear-gradient(to right, var(--primary), var(--primary-hover));
+    color: white;
+    border: none;
+    border-radius: var(--radius);
     font-weight: 700;
-    letter-spacing: 0.025em;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
 }
 
 .login-footer {
@@ -116,9 +203,76 @@ body {
     }
 }
 
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Payment Page Styles */
+.title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    margin-bottom: 32px;
+}
+
+.qr-container {
+    background: #f0fdf4;
+    padding: 24px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 32px;
+    border: 2px dashed #86efac;
+}
+
+.qr-code {
+    width: 220px;
+    height: 220px;
+    display: block;
+}
+
 .upi-btn {
-    background: #f97316;
-    /* Orange color for UPI */
+    background: var(--secondary);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 1.125rem;
+    transition: all 0.2s;
+    box-shadow: var(--shadow);
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.upi-btn:hover {
+    background: var(--secondary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.whatsapp-btn {
+    background: #25D366;
     color: white;
     display: inline-flex;
     align-items: center;
@@ -134,8 +288,103 @@ body {
     width: 100%;
 }
 
-.upi-btn:hover {
-    background: #ea580c;
+.whatsapp-btn:hover {
+    background: #1da851;
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
+}
+
+/* Onboarding Form Styles (Index) */
+.form-section {
+    background: var(--surface);
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-number {
+    background: var(--primary);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group.full {
+    grid-column: span 2;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.radio-group,
+.checkbox-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.radio-option,
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: var(--radius);
+    font-size: 1.125rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+    background: var(--primary-hover);
 }

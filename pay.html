@@ -35,8 +35,16 @@
                 // Get amount from session storage, default to 1 if not found (fallback)
                 const amount = sessionStorage.getItem('paymentAmount') || '1';
 
-                // Construct UPI URL
-                const upiUrl = `upi://pay?pa=6295175749-1@okbizaxis&pn=ShonkuWeb&am=${amount}&cu=INR`;
+                // Format amount to 2 decimal places
+                const formattedAmount = parseFloat(amount).toFixed(2);
+
+                // Generate a unique transaction ID (timestamp + random suffix)
+                const transactionId = 'T' + Date.now() + Math.floor(Math.random() * 1000);
+
+                // Construct UPI URL with additional parameters
+                // tr = Transaction Reference ID
+                // tn = Transaction Note
+                const upiUrl = `upi://pay?pa=6295175749-1@okbizaxis&pn=ShonkuWeb&am=${formattedAmount}&cu=INR&tn=Payment&tr=${transactionId}`;
 
                 // Generate QR Code URL
                 const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
