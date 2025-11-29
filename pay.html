@@ -38,13 +38,9 @@
                 // Format amount to 2 decimal places
                 const formattedAmount = parseFloat(amount).toFixed(2);
 
-                // Generate a unique transaction ID (timestamp + random suffix)
-                const transactionId = 'T' + Date.now() + Math.floor(Math.random() * 1000);
-
-                // Construct UPI URL with additional parameters
-                // tr = Transaction Reference ID
-                // tn = Transaction Note
-                const upiUrl = `upi://pay?pa=6295175749-1@okbizaxis&pn=ShonkuWeb&am=${formattedAmount}&cu=INR&tn=Payment&tr=${transactionId}`;
+                // Minimal UPI URL to avoid "risky transaction" warnings
+                // Only mandatory parameters: pa (address), pn (name), am (amount), cu (currency)
+                const upiUrl = `upi://pay?pa=6295175749-1@okbizaxis&pn=ShonkuWeb&am=${formattedAmount}&cu=INR`;
 
                 // Generate QR Code URL
                 const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
