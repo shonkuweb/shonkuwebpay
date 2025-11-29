@@ -7,6 +7,7 @@
     <title>Payment - ShonkuWeb Pay</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="config.js"></script>
     <script src="protect.js"></script>
 </head>
 
@@ -21,45 +22,44 @@
                 <img id="payment-qr" src="" alt="Payment QR Code" class="qr-code">
             </div>
 
-            <!-- UPI Deep Link Button -->
-            <a id="upi-btn" href="#" class="upi-btn" style="margin-bottom: 20px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                Pay via UPI App
-            </a>
+            <div id="amount-display" class="amount-display"></div>
 
             <script>
-                // Get amount from session storage, default to 1 if not found (fallback)
-                const amount = sessionStorage.getItem('paymentAmount') || '1';
+                // Get current user from session storage
+                const currentUser = sessionStorage.getItem('currentUser');
+
+                // Get amount from CONFIG if user exists, otherwise fallback to session storage or default
+                let amount = '1';
+                if (currentUser && CONFIG.users[currentUser]) {
+                    amount = CONFIG.users[currentUser];
+                } else {
+                    amount = sessionStorage.getItem('paymentAmount') || '1';
+                }
 
                 // Format amount to 2 decimal places
                 const formattedAmount = parseFloat(amount).toFixed(2);
+
+                // Display the amount
+                const amountDisplay = document.getElementById('amount-display');
+                amountDisplay.textContent = `₹${formattedAmount}`;
 
                 // Minimal UPI URL to avoid "risky transaction" warnings
                 // Only mandatory parameters: pa (address), pn (name), am (amount), cu (currency)
                 const upiUrl = `upi://pay?pa=6295175749-1@okbizaxis&pn=ShonkuWeb&am=${formattedAmount}&cu=INR`;
 
-                // Generate QR Code URL
-                const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
+                // Generate QR Code URL with Transparency
+                // dark=ffffff (White Dots), light=00000000 (Transparent Background)
+                const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent(upiUrl)}&dark=ffffff&light=00000000&margin=1&size=250`;
 
                 // Set image source
                 document.getElementById('payment-qr').src = qrUrl;
-
-                // Set UPI button link
-                document.getElementById('upi-btn').href = upiUrl;
             </script>
 
-            <p style="margin-bottom: 30px; color: var(--text-muted);">After payment, please upload the screenshot.</p>
 
-            <a href="https://wa.me/6289417338" target="_blank" class="whatsapp-btn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M17.472 14.382C17.112 14.202 15.344 13.332 15.013 13.216C14.682 13.101 14.441 13.043 14.2 13.404C13.96 13.765 13.269 14.576 13.058 14.835C12.848 15.094 12.638 15.123 12.277 14.943C11.917 14.763 10.756 14.383 9.38004 13.156C8.29304 12.188 7.55904 10.992 7.34804 10.632C7.13804 10.272 7.32704 10.077 7.50704 9.897C7.66804 9.736 7.86504 9.477 8.04504 9.276C8.22604 9.075 8.28604 8.901 8.40604 8.661C8.52704 8.421 8.46604 8.219 8.37604 8.039C8.28604 7.859 7.56504 6.085 7.26504 5.364C6.97204 4.663 6.67704 4.759 6.45804 4.759C6.25504 4.759 6.02304 4.759 5.79104 4.759C5.55904 4.759 5.18304 4.846 4.86804 5.192C4.55304 5.538 3.66604 6.375 3.66604 8.077C3.66604 9.779 4.90404 11.424 5.08404 11.663C5.26404 11.902 7.53304 15.405 11.008 16.906C13.916 18.163 14.498 17.912 15.129 17.854C15.76 17.796 17.112 17.076 17.393 16.283C17.674 15.49 17.674 14.813 17.593 14.678C17.513 14.543 17.272 14.462 16.912 14.282H17.472ZM12.042 21.928C10.269 21.928 8.54204 21.452 7.02204 20.549L6.65704 20.332L2.89204 21.319L3.89704 17.649L3.66004 17.272C2.69804 15.742 2.19204 13.962 2.19204 12.133C2.19204 6.702 6.61104 2.283 12.042 2.283C14.673 2.283 17.145 3.308 19.006 5.169C20.867 7.03 21.892 9.502 21.892 12.133C21.892 17.564 17.473 21.928 12.042 21.928Z" />
-                </svg>
-                Upload Payment Screenshot
+
+            <a href="details.html" class="submit-btn"
+                style="margin-top: 15px; text-decoration: none; display: inline-block; text-align: center;">
+                Proceed to Details
             </a>
         </div>
     </div>

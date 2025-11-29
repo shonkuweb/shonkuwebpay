@@ -1,283 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SHONKUWEBPAY</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="protect.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - ShonkuWeb Pay</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="protect.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <header>
-      <h1>Business Onboarding</h1>
-      <p>Let's get your business online. Please fill in the details below.</p>
-    </header>
+    <div class="container">
+        <div class="card">
+            <img src="logo.jpg" alt="ShonkuWeb Pay Logo" class="logo">
+            <h1 class="title">Terms & Conditions</h1>
+            <p class="subtitle">Please review our terms before proceeding.</p>
 
-    <form id="onboardingForm">
-      <!-- 1. Business Basics -->
-      <section class="form-section">
-        <div class="section-title">
-          <span class="section-number">1</span>
-          Business Basics
-        </div>
-        <div class="form-grid">
-          <div class="form-group full">
-            <label for="businessName">Business Name</label>
-            <input type="text" id="businessName" name="businessName" placeholder="e.g. Shonku's Gadgets" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Contact Email</label>
-            <input type="email" id="email" name="email" placeholder="email@example.com" required>
-          </div>
-          <div class="form-group">
-            <label for="phone">Contact Phone</label>
-            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
-          </div>
-          <div class="form-group full">
-            <label for="address">Business Address</label>
-            <textarea id="address" name="address" placeholder="Full business address..."></textarea>
-          </div>
-          <div class="form-group full">
-            <label for="aboutBusiness">About the Business (Short Description)</label>
-            <textarea id="aboutBusiness" name="aboutBusiness" placeholder="We sell premium gadgets..."></textarea>
-          </div>
-          <div class="form-group full">
-            <label>Do you have GST?</label>
-            <div class="radio-group">
-              <label class="radio-option">
-                <input type="radio" name="gst" value="yes"> Yes
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="gst" value="no" checked> No
-              </label>
+            <div class="terms-box">
+                <h3>Web Development Service Terms</h3>
+                <p>1. <strong>Scope of Work:</strong> We agree to provide web development services as described in the
+                    project proposal. Any additional work will be charged separately.</p>
+                <p>2. <strong>Payment Terms:</strong> A deposit is required to commence work. Final payment is due upon
+                    project completion and before final delivery.</p>
+                <p>3. <strong>Timeline:</strong> We will make every effort to meet the agreed-upon timeline. However,
+                    delays caused by the client (e.g., late content submission) may extend the deadline.</p>
+                <p>4. <strong>Intellectual Property:</strong> Upon full payment, the client will own the rights to the
+                    website design and code. We retain the right to showcase the work in our portfolio.</p>
+                <p>5. <strong>Maintenance:</strong> Post-launch maintenance is not included unless specified in a
+                    separate agreement.</p>
+                <p>6. <strong>Limitation of Liability:</strong> We are not liable for any indirect, special, or
+                    consequential damages arising out of the use of the website.</p>
+                <p>7. <strong>Acceptance:</strong> By proceeding with the payment, you acknowledge that you have read,
+                    understood, and agreed to these terms.</p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- 2. Branding -->
-      <section class="form-section">
-        <div class="section-title">
-          <span class="section-number">2</span>
-          Branding
-        </div>
-        <div class="form-grid">
-          <div class="form-group full">
-            <label>Logo</label>
-            <div class="file-upload">
-              <input type="file" id="logo" name="logo" accept="image/*">
-              <p>Click to upload or drag and drop</p>
+            <div class="checkbox-container">
+                <input type="checkbox" id="accept-terms">
+                <label for="accept-terms">I accept the Terms and Conditions</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="brandColors">Brand Colors (if any)</label>
-            <input type="text" id="brandColors" name="brandColors" placeholder="e.g. Blue and Gold, or #0000FF">
-          </div>
-          <div class="form-group full">
-            <label for="exampleWebsites">Example Websites You Like</label>
-            <textarea id="exampleWebsites" name="exampleWebsites"
-              placeholder="https://example.com, https://another.com"></textarea>
-          </div>
-        </div>
-      </section>
 
-      <!-- 3. Domain & Hosting -->
-      <section class="form-section">
-        <div class="section-title">
-          <span class="section-number">3</span>
-          Domain & Hosting
+            <button id="next-btn" class="submit-btn" disabled>Next</button>
         </div>
-        <div class="form-grid">
-          <div class="form-group full">
-            <label>Do you already have a domain?</label>
-            <div class="radio-group">
-              <label class="radio-option">
-                <input type="radio" name="hasDomain" value="yes"> Yes
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="hasDomain" value="no" checked> No
-              </label>
-            </div>
-          </div>
-          <div class="form-group full">
-            <label for="domainLogin">Domain Login (if we need to connect DNS)</label>
-            <textarea id="domainLogin" name="domainLogin"
-              placeholder="Provider, Username, Password (optional)"></textarea>
-          </div>
-          <div class="form-group full">
-            <label for="hosting">Hosting Preference</label>
-            <select id="hosting" name="hosting">
-              <option value="vercel">Vercel (Recommended for Speed)</option>
-              <option value="hostinger">Hostinger</option>
-              <option value="aws">AWS</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-        </div>
-      </section>
+    </div>
 
-      <!-- 5. Payment Setup -->
-      <section class="form-section">
-        <div class="section-title">
-          <span class="section-number">4</span>
-          Payment Setup
-        </div>
-        <div class="form-grid">
-          <div class="form-group full">
-            <label for="paymentMethod">Preferred Payment Method</label>
-            <select id="paymentMethod" name="paymentMethod">
-              <option value="razorpay">Razorpay</option>
-              <option value="stripe">Stripe</option>
-              <option value="upi">UPI Only</option>
-            </select>
-          </div>
-          <div class="form-group full">
-            <label for="paymentDetails">Razorpay Account Access / Business Details</label>
-            <textarea id="paymentDetails" name="paymentDetails"
-              placeholder="API Keys or Login credentials..."></textarea>
-          </div>
-          <div class="form-group full">
-            <label for="bankDetails">Bank Details for Payouts</label>
-            <textarea id="bankDetails" name="bankDetails" placeholder="Account Number, IFSC, Holder Name..."></textarea>
-          </div>
-        </div>
-      </section>
+    <script>
+        const checkbox = document.getElementById('accept-terms');
+        const nextBtn = document.getElementById('next-btn');
 
-      <!-- 6. Shipping & Delivery -->
-      <section class="form-section">
-        <div class="section-title">
-          <span class="section-number">5</span>
-          Shipping & Delivery
-        </div>
-        <div class="form-grid">
-          <div class="form-group full">
-            <label>Delivery Areas</label>
-            <div class="checkbox-group">
-              <label class="checkbox-option"><input type="checkbox" name="deliveryArea" value="local"> Local</label>
-              <label class="checkbox-option"><input type="checkbox" name="deliveryArea" value="state"> State</label>
-              <label class="checkbox-option"><input type="checkbox" name="deliveryArea" value="pan_india"> PAN
-                India</label>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="shippingCharges">Shipping Charges</label>
-            <select id="shippingCharges" name="shippingCharges">
-              <option value="free">Free Shipping</option>
-              <option value="flat">Flat Rate</option>
-              <option value="weight">Weight-based</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="deliveryDays">Estimated Delivery Days</label>
-            <input type="text" id="deliveryDays" name="deliveryDays" placeholder="e.g. 3-5 days">
-          </div>
-          <div class="form-group full">
-            <label>Return Eligibility</label>
-            <div class="radio-group">
-              <label class="radio-option"><input type="radio" name="returns" value="yes" checked> Yes</label>
-              <label class="radio-option"><input type="radio" name="returns" value="no"> No</label>
-            </div>
-          </div>
-        </div>
-      </section>
+        checkbox.addEventListener('change', function () {
+            if (this.checked) {
+                nextBtn.removeAttribute('disabled');
+            } else {
+                nextBtn.setAttribute('disabled', 'true');
+            }
+        });
 
-      <!-- 7. Required Pages -->
-      <section class="form-section">
-        <div class="section-title">
-          <span class="section-number">6</span>
-          Required Pages
-        </div>
-        <div class="form-grid full-width">
-          <div class="checkbox-group">
-            <label class="checkbox-option"><input type="checkbox" name="pages" value="home" checked disabled>
-              Home</label>
-            <label class="checkbox-option"><input type="checkbox" name="pages" value="products" checked>
-              Products</label>
-            <label class="checkbox-option"><input type="checkbox" name="pages" value="about" checked> About</label>
-            <label class="checkbox-option"><input type="checkbox" name="pages" value="contact" checked> Contact</label>
-            <label class="checkbox-option"><input type="checkbox" name="pages" value="cart" checked> Cart</label>
-            <label class="checkbox-option"><input type="checkbox" name="pages" value="checkout" checked>
-              Checkout</label>
-            <label class="checkbox-option"><input type="checkbox" name="pages" value="policies" checked> Policies
-              (Return, Privacy, etc.)</label>
-            <label class="checkbox-option"><input type="checkbox" name="pages" value="blog"> Blog</label>
-            <label class="checkbox-option"><input type="checkbox" name="pages" value="testimonials">
-              Testimonials</label>
-          </div>
-        </div>
-      </section>
-
-      <!-- 8. Admin Panel Requirements -->
-      <section class="form-section">
-        <div class="section-title">
-          <span class="section-number">7</span>
-          Admin Panel Requirements
-        </div>
-        <div class="form-grid full-width">
-          <div class="checkbox-group">
-            <label class="checkbox-option"><input type="checkbox" name="admin" value="manage_products" checked> Manage
-              Products</label>
-            <label class="checkbox-option"><input type="checkbox" name="admin" value="manage_orders" checked> Manage
-              Orders</label>
-            <label class="checkbox-option"><input type="checkbox" name="admin" value="inventory" checked> Inventory
-              Updates</label>
-            <label class="checkbox-option"><input type="checkbox" name="admin" value="coupons">
-              Coupons/Discounts</label>
-          </div>
-        </div>
-      </section>
-
-      <!-- 9. Integrations -->
-      <section class="form-section">
-        <div class="section-title">
-          <span class="section-number">8</span>
-          Integrations
-        </div>
-        <div class="form-grid full-width">
-          <div class="checkbox-group">
-            <label class="checkbox-option"><input type="checkbox" name="integrations" value="whatsapp" checked> WhatsApp
-              Button</label>
-            <label class="checkbox-option"><input type="checkbox" name="integrations" value="email_notif" checked> Email
-              Notifications</label>
-            <label class="checkbox-option"><input type="checkbox" name="integrations" value="analytics"> Google
-              Analytics</label>
-          </div>
-        </div>
-      </section>
-
-      <!-- 10. Content Needed -->
-      <section class="form-section">
-        <div class="section-title">
-          <span class="section-number">9</span>
-          Content Needed
-        </div>
-        <div class="form-grid">
-          <div class="form-group full">
-            <label for="aboutText">About Us Text</label>
-            <textarea id="aboutText" name="aboutText" placeholder="Detailed story about your brand..."></textarea>
-          </div>
-          <div class="form-group full">
-            <label>Banner Images</label>
-            <div class="file-upload">
-              <input type="file" id="banners" name="banners" multiple accept="image/*">
-              <p>Upload one or more banner images</p>
-            </div>
-          </div>
-          <div class="form-group full">
-            <label for="socialLinks">Social Media Links</label>
-            <textarea id="socialLinks" name="socialLinks"
-              placeholder="Facebook, Instagram, Twitter links..."></textarea>
-          </div>
-        </div>
-      </section>
-
-      <button type="submit">Submit Information</button>
-    </form>
-  </div>
-  <script src="script.js"></script>
+        nextBtn.addEventListener('click', function () {
+            if (!this.disabled) {
+                window.location.href = 'pay.html';
+            }
+        });
+    </script>
 </body>
 
 </html>

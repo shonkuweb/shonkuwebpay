@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - ShonkuWeb Pay</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
@@ -37,19 +38,14 @@
             font-size: 0.9rem;
         }
     </style>
+    <script src="config.js"></script>
     <script src="protect.js"></script>
 </head>
 
 <body>
     <div class="login-card">
         <div class="login-header">
-            <div class="logo-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    stroke-width="2" style="width: 24px; height: 24px;">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-            </div>
+            <img src="logo.jpg" alt="ShonkuWeb Pay Logo" class="logo">
             <h1>Welcome Back</h1>
             <p class="login-subtitle">Please enter your password to continue</p>
         </div>
@@ -58,18 +54,18 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="password-wrapper">
-                    <input type="password" id="password" placeholder="Enter your password" required>
-                    <button type="button" class="password-toggle" onclick="togglePassword()"
-                        aria-label="Toggle password visibility">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    <input type="password" id="password" placeholder="Enter your password" required
+                        class="premium-input">
+                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
                         </svg>
                     </button>
                 </div>
-                <a href="#" class="forgot-password">Forgot Password?</a>
+                <a href="https://wa.me/6289417338?text=i%20forget%20the%20password%20for%20pay.shonkuweb.com%20login"
+                    target="_blank" class="forgot-password">Forgot Password?</a>
             </div>
             <button type="submit" class="submit-btn">Sign In</button>
             <p id="error" class="error-msg">Incorrect password. Please try again.</p>
@@ -88,25 +84,12 @@
     </div>
 
     <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleBtn = document.querySelector('.password-toggle');
-
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                    </svg>
-                `;
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
             } else {
-                passwordInput.type = 'password';
-                toggleBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                `;
+                input.type = 'password';
             }
         }
 
@@ -116,16 +99,15 @@
             const passwordInput = document.getElementById('password').value;
             const errorMsg = document.getElementById('error');
 
-            // User credentials map
-            const users = {
-                "shonkuweb@gmail.com": 1,
-                "imsoumyojit@gmail.com": 1
-            };
+            // Use users from CONFIG
+            const users = CONFIG.users;
 
             if (users.hasOwnProperty(passwordInput)) {
                 // Set a flag in session storage to indicate the user is logged in
                 sessionStorage.setItem('isLoggedIn', 'true');
-                // Store the specific amount for this user
+                // Store the current user identifier
+                sessionStorage.setItem('currentUser', passwordInput);
+                // Store the specific amount for this user (fallback)
                 sessionStorage.setItem('paymentAmount', users[passwordInput]);
                 window.location.href = 'index.html';
             } else {

@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SHONKUWEBPAY</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="protect.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Business Onboarding</h1>
+            <p>Let's get your business online. Please fill in the details below.</p>
+        </header>
+
+        <form id="onboardingForm">
+            <!-- 1. Business Basics -->
+            <section class="form-section">
+                <div class="section-title">
+                    <span class="section-number">1</span>
+                    Business Basics
+                </div>
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label for="businessName">Business Name</label>
+                        <input type="text" id="businessName" name="businessName" placeholder="e.g. Shonku's Gadgets"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Contact Email</label>
+                        <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Contact Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+                    </div>
+                    <div class="form-group full">
+                        <label for="address">Business Address</label>
+                        <textarea id="address" name="address" placeholder="Full business address..."></textarea>
+                    </div>
+                    <div class="form-group full">
+                        <label for="aboutBusiness">About the Business (Short Description)</label>
+                        <textarea id="aboutBusiness" name="aboutBusiness"
+                            placeholder="We sell premium gadgets..."></textarea>
+                    </div>
+                    <div class="form-group full">
+                        <label>Do you have GST?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="gst" value="yes"> Yes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="gst" value="no" checked> No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group full" id="gstInputContainer" style="display: none;">
+                        <label for="gstNumber">GST Number</label>
+                        <input type="text" id="gstNumber" name="gstNumber" placeholder="e.g. 22AAAAA0000A1Z5">
+                        <small style="color: red; display: none;" id="gstError">Invalid GST Format</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Domain & Hosting -->
+            <section class="form-section">
+                <div class="section-title">
+                    <span class="section-number">2</span>
+                    Domain & Hosting
+                </div>
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label>Do you already have a domain?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="hasDomain" value="yes"> Yes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="hasDomain" value="no" checked> No
+                            </label>
+                        </div>
+                        <p id="domainMessage" style="color: var(--primary); margin-top: 10px; font-weight: 500;">We will
+                            provide you
+                            a domain.</p>
+                    </div>
+                    <div class="form-group full" id="domainDetailsContainer" style="display: none;">
+                        <div class="form-group">
+                            <label for="domainName">Domain Name</label>
+                            <input type="text" id="domainName" name="domainName" placeholder="example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="dnsEmail">DNS Provider Login Email</label>
+                            <input type="email" id="dnsEmail" name="dnsEmail" placeholder="email@provider.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="adminPassword">Password for Administrator Panel</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="adminPassword" name="adminPassword"
+                                    placeholder="Admin Password" class="premium-input">
+                                <button type="button" class="password-toggle" onclick="togglePassword('adminPassword')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group full">
+                        <label>Do you have a VPS?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="hasVPS" value="yes"> Yes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="hasVPS" value="no" checked> No
+                            </label>
+                        </div>
+                        <p id="vpsMessage" style="color: var(--primary); margin-top: 10px; font-weight: 500;">We will
+                            provide you a
+                            VPS.</p>
+                    </div>
+                    <div class="form-group full" id="vpsDetailsContainer" style="display: none;">
+                        <div class="form-group">
+                            <label for="vpsIP">VPS IP Address</label>
+                            <input type="text" id="vpsIP" name="vpsIP" placeholder="e.g. 192.168.1.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="rootPassword">Root Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="rootPassword" name="rootPassword" placeholder="Root Password"
+                                    class="premium-input">
+                                <button type="button" class="password-toggle" onclick="togglePassword('rootPassword')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Payment Setup -->
+            <section class="form-section">
+                <div class="section-title">
+                    <span class="section-number">3</span>
+                    Payment Setup
+                </div>
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label for="paymentMethod">Preferred Payment Method</label>
+                        <select id="paymentMethod" name="paymentMethod">
+                            <option value="razorpay">Razorpay</option>
+                            <option value="stripe">Stripe</option>
+                            <option value="upi">UPI Only</option>
+                        </select>
+                    </div>
+                    <div class="form-group full">
+                        <label for="paymentDetails">Razorpay Account Access / Business Details</label>
+                        <textarea id="paymentDetails" name="paymentDetails"
+                            placeholder="API Keys or Login credentials..."></textarea>
+                    </div>
+                    <div class="form-group full">
+                        <label for="bankDetails">Bank Details for Payouts</label>
+                        <textarea id="bankDetails" name="bankDetails"
+                            placeholder="Account Number, IFSC, Holder Name..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Shipping & Delivery -->
+            <section class="form-section">
+                <div class="section-title">
+                    <span class="section-number">4</span>
+                    Shipping & Delivery
+                </div>
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label>Delivery Areas</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option"><input type="checkbox" name="deliveryArea" value="local">
+                                Local</label>
+                            <label class="checkbox-option"><input type="checkbox" name="deliveryArea" value="state">
+                                State</label>
+                            <label class="checkbox-option"><input type="checkbox" name="deliveryArea" value="pan_india">
+                                PAN
+                                India</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="shippingCharges">Shipping Charges</label>
+                        <select id="shippingCharges" name="shippingCharges">
+                            <option value="free">Free Shipping</option>
+                            <option value="flat">Flat Rate</option>
+                            <option value="weight">Weight-based</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryDays">Estimated Delivery Days</label>
+                        <input type="text" id="deliveryDays" name="deliveryDays" placeholder="e.g. 3-5 days">
+                    </div>
+                    <div class="form-group full">
+                        <label>Return Eligibility</label>
+                        <div class="radio-group">
+                            <label class="radio-option"><input type="radio" name="returns" value="yes" checked>
+                                Yes</label>
+                            <label class="radio-option"><input type="radio" name="returns" value="no"> No</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Required Pages -->
+            <section class="form-section">
+                <div class="section-title">
+                    <span class="section-number">5</span>
+                    Required Pages
+                </div>
+                <div class="form-grid full-width">
+                    <div class="checkbox-group">
+                        <label class="checkbox-option"><input type="checkbox" name="pages" value="home" checked
+                                disabled>
+                            Home</label>
+                        <label class="checkbox-option"><input type="checkbox" name="pages" value="products" checked>
+                            Products</label>
+                        <label class="checkbox-option"><input type="checkbox" name="pages" value="about" checked>
+                            About</label>
+                        <label class="checkbox-option"><input type="checkbox" name="pages" value="contact" checked>
+                            Contact</label>
+                        <label class="checkbox-option"><input type="checkbox" name="pages" value="cart" checked>
+                            Cart</label>
+                        <label class="checkbox-option"><input type="checkbox" name="pages" value="checkout" checked>
+                            Checkout</label>
+                        <label class="checkbox-option"><input type="checkbox" name="pages" value="policies" checked>
+                            Policies
+                            (Return, Privacy, etc.)</label>
+                        <label class="checkbox-option"><input type="checkbox" name="pages" value="blog"> Blog</label>
+                        <label class="checkbox-option"><input type="checkbox" name="pages" value="testimonials">
+                            Testimonials</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Admin Panel Requirements -->
+            <section class="form-section">
+                <div class="section-title">
+                    <span class="section-number">6</span>
+                    Admin Panel Requirements
+                </div>
+                <div class="form-grid full-width">
+                    <div class="checkbox-group">
+                        <label class="checkbox-option"><input type="checkbox" name="admin" value="manage_products"
+                                checked> Manage
+                            Products</label>
+                        <label class="checkbox-option"><input type="checkbox" name="admin" value="manage_orders"
+                                checked> Manage
+                            Orders</label>
+                        <label class="checkbox-option"><input type="checkbox" name="admin" value="inventory" checked>
+                            Inventory
+                            Updates</label>
+                        <label class="checkbox-option"><input type="checkbox" name="admin" value="coupons">
+                            Coupons/Discounts</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Integrations -->
+            <section class="form-section">
+                <div class="section-title">
+                    <span class="section-number">7</span>
+                    Integrations
+                </div>
+                <div class="form-grid full-width">
+                    <div class="checkbox-group">
+                        <label class="checkbox-option"><input type="checkbox" name="integrations" value="whatsapp"
+                                checked> WhatsApp
+                            Button</label>
+                        <label class="checkbox-option"><input type="checkbox" name="integrations" value="email_notif"
+                                checked> Email
+                            Notifications</label>
+                        <label class="checkbox-option"><input type="checkbox" name="integrations" value="analytics">
+                            Google
+                            Analytics</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. Content Needed -->
+            <section class="form-section">
+                <div class="section-title">
+                    <span class="section-number">8</span>
+                    Content Needed
+                </div>
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label for="aboutText">About Us Text</label>
+                        <textarea id="aboutText" name="aboutText"
+                            placeholder="Detailed story about your brand..."></textarea>
+                    </div>
+                    <div class="form-group full">
+                        <label>Banner Images</label>
+                        <div class="file-upload">
+                            <input type="file" id="banners" name="banners" multiple accept="image/*">
+                            <p>Upload one or more banner images</p>
+                        </div>
+                    </div>
+                    <div class="form-group full">
+                        <label for="socialLinks">Social Media Links</label>
+                        <textarea id="socialLinks" name="socialLinks"
+                            placeholder="Facebook, Instagram, Twitter links..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <button type="submit">Submit Information</button>
+        </form>
+    </div>
+    </div>
+    <script>
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('onboardingForm');
+            const gstRadios = document.getElementsByName('gst');
+            const gstInputContainer = document.getElementById('gstInputContainer');
+            const gstInput = document.getElementById('gstNumber');
+            const gstError = document.getElementById('gstError');
+
+            const domainRadios = document.getElementsByName('hasDomain');
+            const domainDetailsContainer = document.getElementById('domainDetailsContainer');
+            const domainName = document.getElementById('domainName');
+            const dnsEmail = document.getElementById('dnsEmail');
+            const adminPassword = document.getElementById('adminPassword');
+            const domainMessage = document.getElementById('domainMessage');
+
+            // GST Toggle Logic
+            console.log('GST Radios found:', gstRadios.length);
+            gstRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    console.log('GST Radio changed:', e.target.value);
+                    if (e.target.value === 'yes') {
+                        gstInputContainer.style.display = 'block';
+                        gstInput.required = true;
+                    } else {
+                        gstInputContainer.style.display = 'none';
+                        gstInput.required = false;
+                        gstInput.value = ''; // Clear value
+                        gstInput.style.borderColor = ''; // Reset border
+                        gstError.style.display = 'none'; // Hide error
+                    }
+                });
+            });
+
+            // Domain Toggle Logic
+            domainRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'yes') {
+                        domainDetailsContainer.style.display = 'block';
+                        domainMessage.style.display = 'none';
+                        domainName.required = true;
+                        dnsEmail.required = true;
+                        adminPassword.required = true;
+                    } else {
+                        domainDetailsContainer.style.display = 'none';
+                        domainMessage.style.display = 'block';
+                        domainName.required = false;
+                        dnsEmail.required = false;
+                        adminPassword.required = false;
+                        // Clear values
+                        domainName.value = '';
+                        dnsEmail.value = '';
+                        adminPassword.value = '';
+                    }
+                });
+            });
+
+            // VPS Toggle Logic
+            const vpsRadios = document.getElementsByName('hasVPS');
+            const vpsDetailsContainer = document.getElementById('vpsDetailsContainer');
+            const vpsIP = document.getElementById('vpsIP');
+            const rootPassword = document.getElementById('rootPassword');
+            const vpsMessage = document.getElementById('vpsMessage');
+
+            vpsRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'yes') {
+                        vpsDetailsContainer.style.display = 'block';
+                        vpsMessage.style.display = 'none';
+                        vpsIP.required = true;
+                        rootPassword.required = true;
+                    } else {
+                        vpsDetailsContainer.style.display = 'none';
+                        vpsMessage.style.display = 'block';
+                        vpsIP.required = false;
+                        rootPassword.required = false;
+                        vpsIP.value = '';
+                        rootPassword.value = '';
+                    }
+                });
+            });
+
+            // GST Validation Logic
+            const validateGST = (value) => {
+                const gstPattern = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+                if (value.length === 15) {
+                    if (gstPattern.test(value)) {
+                        gstInput.style.borderColor = '#10b981'; // Green
+                        gstError.style.display = 'none';
+                        return true;
+                    } else {
+                        gstInput.style.borderColor = '#ef4444'; // Red
+                        gstError.style.display = 'block';
+                        return false;
+                    }
+                } else {
+                    gstInput.style.borderColor = '';
+                    gstError.style.display = 'none';
+                    return false;
+                }
+            };
+
+            gstInput.addEventListener('input', (e) => {
+                const value = e.target.value.toUpperCase();
+                e.target.value = value; // Auto-capitalize
+
+                // Only validate if length is 15, otherwise clear error
+                if (value.length === 15) {
+                    validateGST(value);
+                } else {
+                    gstInput.style.borderColor = '';
+                    gstError.style.display = 'none';
+                }
+            });
+
+            gstInput.addEventListener('blur', (e) => {
+                const value = e.target.value;
+                if (value.length > 0 && value.length !== 15) {
+                    gstInput.style.borderColor = '#ef4444'; // Red
+                    gstError.style.display = 'block';
+                } else if (value.length === 15) {
+                    validateGST(value);
+                }
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Final GST Validation check before submit
+                if (gstInput.required && gstInput.value) {
+                    if (!validateGST(gstInput.value)) {
+                        alert('Please enter a valid GST Number.');
+                        gstInput.focus();
+                        return;
+                    }
+                }
+
+                // Gather form data
+                const formData = new FormData(form);
+                const data = {};
+
+                for (let [key, value] of formData.entries()) {
+                    // Handle multiple values for checkboxes
+                    if (data[key]) {
+                        if (!Array.isArray(data[key])) {
+                            data[key] = [data[key]];
+                        }
+                        data[key].push(value);
+                    } else {
+                        data[key] = value;
+                    }
+                }
+
+                console.log('Form Data Submitted:', data);
+
+                // Visual feedback
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+
+                submitBtn.textContent = 'Submitted Successfully!';
+                submitBtn.style.backgroundColor = '#10b981'; // Green color
+                submitBtn.disabled = true;
+
+                alert('Thank you! Your business details have been captured. Check the console for the data object.');
+
+                // Redirect after a short delay to allow the user to see the success state
+                // setTimeout(() => {
+                //     window.location.href = 'AT&C.html';
+                // }, 1000);
+            });
+        });
+    </script>
+</body>
+
+</html>
