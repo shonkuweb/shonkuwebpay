@@ -21,6 +21,16 @@
                 <img id="payment-qr" src="" alt="Payment QR Code" class="qr-code">
             </div>
 
+            <!-- UPI Deep Link Button -->
+            <a id="upi-btn" href="#" class="upi-btn" style="margin-bottom: 20px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Pay via UPI App
+            </a>
+
             <script>
                 // Get amount from session storage, default to 1 if not found (fallback)
                 const amount = sessionStorage.getItem('paymentAmount') || '1';
@@ -33,6 +43,9 @@
 
                 // Set image source
                 document.getElementById('payment-qr').src = qrUrl;
+
+                // Set UPI button link
+                document.getElementById('upi-btn').href = upiUrl;
             </script>
 
             <p style="margin-bottom: 30px; color: var(--text-muted);">After payment, please upload the screenshot.</p>
