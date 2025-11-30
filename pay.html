@@ -7,7 +7,7 @@
     <title>Payment - ShonkuWeb Pay</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="config.js"></script>
+    <script>document.write('<script src="config.js?v=' + Date.now() + '"><\/script>')</script>
     <script src="protect.js"></script>
 </head>
 
@@ -15,7 +15,7 @@
     <div class="container">
         <div class="card">
             <h1 class="title">Scan to Pay</h1>
-            <p class="subtitle">Please scan the QR code below to complete your payment.</p>
+
 
             <div class="qr-container">
                 <!-- Dynamic QR Code for UPI Payment -->
@@ -23,6 +23,17 @@
             </div>
 
             <div id="amount-display" class="amount-display"></div>
+
+            <div class="auth-section">
+                <p style="margin-bottom: 12px; color: var(--text-muted); font-size: 0.9rem;">Send payment screenshot on
+                    WhatsApp to get the code</p>
+                <input type="text" id="auth-code" maxlength="4" placeholder="0000" class="auth-input" autocomplete="off"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>
+
+            <button onclick="verifyPayment()" class="submit-btn" style="margin-top: 24px;">
+                Proceed to Details
+            </button>
 
             <script>
                 // Get current user from session storage
@@ -52,19 +63,18 @@
 
                 // Generate QR Code URL with Transparency
                 // dark=ffffff (White Dots), light=00000000 (Transparent Background)
-                const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent(upiUrl)}&dark=ffffff&light=00000000&margin=1&size=250`;
+                const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent(upiUrl)}&dark=000000&light=00000000&margin=1&size=250`;
 
                 // Set image source
                 document.getElementById('payment-qr').src = qrUrl;
 
                 function verifyPayment() {
                     const enteredCode = document.getElementById('auth-code').value;
-                    const errorMsg = document.getElementById('auth-error');
+
 
                     if (enteredCode === userAuthCode) {
                         window.location.href = 'details.html';
                     } else {
-                        errorMsg.style.display = 'block';
                         // Shake animation
                         const input = document.getElementById('auth-code');
                         input.style.animation = 'none';
@@ -74,26 +84,14 @@
                 }
 
                 // Allow Enter key to submit
-                document.getElementById('auth-code').addEventListener('keypress', function (e) {
+                // Allow Enter key to submit
+                document.getElementById('auth-code').addEventListener('keydown', function (e) {
                     if (e.key === 'Enter') {
+                        e.preventDefault(); // Prevent default form submission if any
                         verifyPayment();
                     }
                 });
             </script>
-
-            <div id="amount-display" class="amount-display"></div>
-
-            <div class="auth-section">
-                <p style="margin-bottom: 12px; color: var(--text-muted); font-size: 0.9rem;">Enter 4-digit Code to
-                    Proceed</p>
-                <input type="text" id="auth-code" maxlength="4" placeholder="0000" class="auth-input"
-                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                <p id="auth-error" class="error-msg" style="margin-top: 8px;">Invalid Code</p>
-            </div>
-
-            <button onclick="verifyPayment()" class="submit-btn" style="margin-top: 24px;">
-                Proceed to Details
-            </button>
         </div>
     </div>
 </body>

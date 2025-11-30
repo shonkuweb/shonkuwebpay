@@ -14,13 +14,28 @@
     <div class="container">
         <div class="card">
             <img src="logo.jpg" alt="ShonkuWeb Pay Logo" class="logo">
-            <h1 class="title">Terms & Conditions</h1>
+            <h1 id="page-title" class="title">Terms & Conditions</h1>
             <p class="subtitle">Please review our terms before proceeding.</p>
 
             <div class="terms-box" style="text-align: center; padding: 20px;">
-                <img src="terms_content.png" alt="Terms Content"
+                <img id="terms-image" src="terms_content.png" alt="Terms Content"
                     style="max-width: 100%; height: auto; border-radius: 8px;">
             </div>
+
+            <script>document.write('<script src="config.js?v=' + Date.now() + '"><\/script>')</script>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const currentUser = sessionStorage.getItem('currentUser');
+                    if (currentUser && CONFIG.users[currentUser]) {
+                        if (CONFIG.users[currentUser].image) {
+                            document.getElementById('terms-image').src = CONFIG.users[currentUser].image;
+                        }
+                        if (CONFIG.users[currentUser].name) {
+                            document.getElementById('page-title').textContent = `Welcome ${CONFIG.users[currentUser].name}`;
+                        }
+                    }
+                });
+            </script>
 
             <div class="checkbox-container">
                 <input type="checkbox" id="accept-terms">

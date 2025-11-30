@@ -493,15 +493,15 @@
                 const originalText = submitBtn.textContent;
 
                 submitBtn.textContent = 'Submitted Successfully!';
-                submitBtn.style.backgroundColor = '#10b981'; // Green color
+
                 submitBtn.disabled = true;
 
-                alert('Thank you! Your business details have been captured. Check the console for the data object.');
+
 
                 // Redirect after a short delay to allow the user to see the success state
-                // setTimeout(() => {
-                //     window.location.href = 'AT&C.html';
-                // }, 1000);
+                setTimeout(() => {
+                    window.location.href = 'success.html';
+                }, 1000);
             });
         });
     </script>
