@@ -4,7 +4,9 @@
 
 const CONFIG = {
     users: {
-        "l": { amount: 1, code: "3333", image: "terms_content.png", name: "mukherjeefirm" },
+        "l": { amount: 5, code: "3333", image: "terms_content.png", name: "mukherjeefirm" },
+        "jit": { amount: 5000, code: "2321", image: "terms_content.png", name: "ma manasa" },
+
 
 
     },

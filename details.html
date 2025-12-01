@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SHONKUWEBPAY</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1">
     <script src="protect.js"></script>
 </head>
 
@@ -274,22 +274,34 @@
             </section>
 
             <!-- 7. Integrations -->
+            <!-- 7. Social Media Links -->
             <section class="form-section">
                 <div class="section-title">
                     <span class="section-number">7</span>
-                    Integrations
+                    Social Media Links
                 </div>
                 <div class="form-grid full-width">
-                    <div class="checkbox-group">
-                        <label class="checkbox-option"><input type="checkbox" name="integrations" value="whatsapp"
-                                checked> WhatsApp
-                            Button</label>
-                        <label class="checkbox-option"><input type="checkbox" name="integrations" value="email_notif"
-                                checked> Email
-                            Notifications</label>
-                        <label class="checkbox-option"><input type="checkbox" name="integrations" value="analytics">
-                            Google
-                            Analytics</label>
+                    <div class="form-group full">
+                        <label>Do you want to add social media links?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="addSocialMedia" value="yes"> Yes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="addSocialMedia" value="no" checked> No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group full" id="socialMediaContainer" style="display: none;">
+                        <label>Social Media Links</label>
+                        <div id="socialLinksWrapper">
+                            <div class="form-group" style="margin-bottom: 10px;">
+                                <input type="url" name="socialLinks[]" placeholder="https://instagram.com/yourbrand">
+                            </div>
+                        </div>
+                        <button type="button" id="addSocialLinkBtn"
+                            style="margin-top: 10px; width: auto; padding: 8px 16px; font-size: 0.9rem;">+ Add Another
+                            Link</button>
                     </div>
                 </div>
             </section>
@@ -413,6 +425,30 @@
                         rootPassword.value = '';
                     }
                 });
+            });
+
+            // Social Media Toggle Logic
+            const socialRadios = document.getElementsByName('addSocialMedia');
+            const socialContainer = document.getElementById('socialMediaContainer');
+            const socialLinksWrapper = document.getElementById('socialLinksWrapper');
+            const addSocialLinkBtn = document.getElementById('addSocialLinkBtn');
+
+            socialRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'yes') {
+                        socialContainer.style.display = 'block';
+                    } else {
+                        socialContainer.style.display = 'none';
+                    }
+                });
+            });
+
+            addSocialLinkBtn.addEventListener('click', () => {
+                const div = document.createElement('div');
+                div.className = 'form-group';
+                div.style.marginBottom = '10px';
+                div.innerHTML = '<input type="url" name="socialLinks[]" placeholder="https://social-media.com/your-profile">';
+                socialLinksWrapper.appendChild(div);
             });
 
             // GST Validation Logic
