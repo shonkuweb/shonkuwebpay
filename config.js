@@ -4,7 +4,7 @@
 
 const CONFIG = {
     users: {
-        "l": { amount: 2, code: "3333", image: "terms_content.png", name: "fuck fuck" },
+        "l": { amount: 2, code: "3333", image: "terms_content.png", name: "shibam" },
         "jit": { amount: 5000, code: "2321", image: "terms_content.png", name: "ma manasa" },
 
 
