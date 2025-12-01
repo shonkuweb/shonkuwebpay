@@ -6,6 +6,7 @@ const CONFIG = {
     users: {
         "l": { amount: 2, code: "3333", image: "terms_content.png", name: "shibam" },
         "jit": { amount: 5000, code: "2321", image: "terms_content.png", name: "ma manasa" },
+        "m": { amount: 400000, code: "0000", image: "terms_content.png", name: "elon musk" },
 
 
 
