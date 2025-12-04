@@ -393,6 +393,12 @@ input[type="radio"] {
     height: 18px;
 }
 
+input[type="checkbox"]:disabled {
+    accent-color: #000000;
+    opacity: 1;
+    cursor: not-allowed;
+}
+
 .radio-group,
 .checkbox-group {
     display: flex;

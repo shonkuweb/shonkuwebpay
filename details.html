@@ -21,12 +21,12 @@
             <section class="form-section">
                 <div class="section-title">
                     <span class="section-number">1</span>
-                    Business Basics
+                    BUSINESS DETAILS
                 </div>
                 <div class="form-grid">
                     <div class="form-group full">
                         <label for="businessName">Business Name</label>
-                        <input type="text" id="businessName" name="businessName" placeholder="e.g. Shonku's Gadgets"
+                        <input type="text" id="businessName" name="businessName" placeholder="enter business name"
                             required>
                     </div>
                     <div class="form-group">
@@ -39,12 +39,13 @@
                     </div>
                     <div class="form-group full">
                         <label for="address">Business Address</label>
-                        <textarea id="address" name="address" placeholder="Full business address..."></textarea>
+                        <textarea id="address" name="address" placeholder="enter business address"
+                            style="resize: none;"></textarea>
                     </div>
                     <div class="form-group full">
                         <label for="aboutBusiness">About the Business (Short Description)</label>
-                        <textarea id="aboutBusiness" name="aboutBusiness"
-                            placeholder="We sell premium gadgets..."></textarea>
+                        <textarea id="aboutBusiness" name="aboutBusiness" placeholder="short description of business"
+                            style="resize: none;"></textarea>
                     </div>
                     <div class="form-group full">
                         <label>Do you have GST?</label>
@@ -156,24 +157,7 @@
                     Payment Setup
                 </div>
                 <div class="form-grid">
-                    <div class="form-group full">
-                        <label for="paymentMethod">Preferred Payment Method</label>
-                        <select id="paymentMethod" name="paymentMethod">
-                            <option value="razorpay">Razorpay</option>
-                            <option value="stripe">Stripe</option>
-                            <option value="upi">UPI Only</option>
-                        </select>
-                    </div>
-                    <div class="form-group full">
-                        <label for="paymentDetails">Razorpay Account Access / Business Details</label>
-                        <textarea id="paymentDetails" name="paymentDetails"
-                            placeholder="API Keys or Login credentials..."></textarea>
-                    </div>
-                    <div class="form-group full">
-                        <label for="bankDetails">Bank Details for Payouts</label>
-                        <textarea id="bankDetails" name="bankDetails"
-                            placeholder="Account Number, IFSC, Holder Name..."></textarea>
-                    </div>
+                    <!-- Content removed as requested -->
                 </div>
             </section>
 
@@ -243,9 +227,6 @@
                         <label class="checkbox-option"><input type="checkbox" name="pages" value="policies" checked>
                             Policies
                             (Return, Privacy, etc.)</label>
-                        <label class="checkbox-option"><input type="checkbox" name="pages" value="blog"> Blog</label>
-                        <label class="checkbox-option"><input type="checkbox" name="pages" value="testimonials">
-                            Testimonials</label>
                     </div>
                 </div>
             </section>
@@ -444,11 +425,22 @@
             });
 
             addSocialLinkBtn.addEventListener('click', () => {
+                const currentLinks = socialLinksWrapper.querySelectorAll('input[name="socialLinks[]"]').length;
+                if (currentLinks >= 4) {
+                    alert('You can add up to 4 social media links only.');
+                    return;
+                }
+
                 const div = document.createElement('div');
                 div.className = 'form-group';
                 div.style.marginBottom = '10px';
                 div.innerHTML = '<input type="url" name="socialLinks[]" placeholder="https://social-media.com/your-profile">';
                 socialLinksWrapper.appendChild(div);
+
+                // Hide button if limit reached
+                if (currentLinks + 1 >= 4) {
+                    addSocialLinkBtn.style.display = 'none';
+                }
             });
 
             // GST Validation Logic
